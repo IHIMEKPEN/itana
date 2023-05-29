@@ -60,4 +60,6 @@ $ docker run -p 3001:3001 dredgreat/itana
 #push to docker hub
 $ docker push dredgreat/itana
 ```
+## Documentation
 
+- Postman - (https://documenter.getpostman.com/view/19118805/2s93m8yLQc)

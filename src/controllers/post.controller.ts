@@ -16,7 +16,6 @@ export class PostController {
     let data = {
       ...req.body,
       userID: user?.id,
-      // comments:[]
     }
     
     let post = await this.postService.addPost(data);
@@ -69,7 +68,7 @@ export class PostController {
     let {skip=0,take=10}=req.query
     let posts = await this.postService.getUserPosts(user,{skip,take});
     res.status(200)
-      .json(httpResponse('posts fetched', { posts }));
+      .json(httpResponse('posts fetched', { NoPosts:posts.length,posts }));
   }
 
 }
