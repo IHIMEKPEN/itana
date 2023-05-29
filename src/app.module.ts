@@ -1,19 +1,27 @@
-import { MiddlewareConsumer, Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module,CacheModule, CacheStore } from '@nestjs/common';
 import { AuthController } from './controllers/auth.controller';
-import { AuthService, PostService, } from './services/index';
+import { AuthService, PostService, UserService, } from './services/index';
 import { PostController } from './controllers/post.controller';
 import { authMiddleware } from './middlewares';
+import { UserController } from './controllers';
+import redisStore from 'cache-manager-redis-store';
 @Module({
-  imports: [],
-  controllers: [AuthController,PostController],
-  providers: [AuthService,PostService],
+  imports: [CacheModule.register({
+    isGlobal: true,
+    store: redisStore as unknown as CacheStore,
+    host: 'localhost',
+    port: 6379,
+    // password:'redisPassword'
+  }),],
+  controllers: [AuthController,PostController,UserController],
+  providers: [AuthService,PostService,UserService],
 })
 export class AppModule {
 
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(authMiddleware.use)
-      .forRoutes('/api/v1/post' 
+      .forRoutes('/api/v1/post','/api/v1/user' 
       // method: RequestMethod.GET 
     );
   }
