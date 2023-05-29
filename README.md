@@ -1,5 +1,5 @@
 <p align="center">
-  Itana
+  Itana- Social Media APIs
 </p>
 
   <p align="center">The APIs  in this repo will be responsible for handling user interactions, posts, likes, comments, and search functionalities.</p>
