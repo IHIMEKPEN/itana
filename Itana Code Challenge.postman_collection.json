@@ -1,0 +1,394 @@
+{
+	"info": {
+		"_postman_id": "e4368727-4896-44e7-8d3f-9a2a8664fbe2",
+		"name": "Itana Code Challenge",
+		"description": "The APIs in this collection will be responsible for handling user interactions, posts, likes, comments, and search functionalities.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19118805"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register/Sign-up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "oihimekpen+@gmail.com",
+									"description": "(Required)<string>",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Admin@123",
+									"description": "(Required)<string>",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "Dredgreat+",
+									"description": "(Required)<string>",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Baseurl}}/register",
+							"host": [
+								"{{Baseurl}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "oihimekpen+@gmail.com",
+									"description": "(Required)<string>",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Admin@123",
+									"description": "(Required)<string>",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Baseurl}}/login",
+							"host": [
+								"{{Baseurl}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "this collection contain ednpoint used for user authentication"
+		},
+		{
+			"name": "Post Management",
+			"item": [
+				{
+					"name": "Create a Post",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDcyNDc1NDUyOTdhNTY1NGYwZWM4NGYiLCJlbWFpbCI6Im9paGltZWtwZW5AZ21haWwuY29tIiwiaWF0IjoxNjg1MjExMDM3LCJleHAiOjE2OTI5ODcwMzd9.5NIF4m3pbnLyuegpYlR1hjFCFKXxUHPcY1YSYTv6tKA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "Master the Cosmos: A Beginner's Guide to Building and Deploying Smart Contracts",
+									"description": "(Required)<string>",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "The Cosmos network is one of the most promising blockchain networks that enable interoperability between different blockchain platforms, and it's becoming increasingly important for developers to understand how to build and deploy smart contracts on this network.\n\nSmart contracts are self-executing contracts with the terms of the agreement written directly into code. They are a vital component of decentralized applications and are crucial for creating trustless and transparent systems. As the demand for decentralized applications rises, understanding and using smart contracts is a prerequisite skill for developers building and developing applications in Web3.\n\nDoes the cosmos support smart contracts? Yes. In this tutorial, we will learn about the Cosmos ecosystem and how to build and deploy a smart contract on the cosmos network.",
+									"description": "(Required)<string>",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Baseurl}}/post",
+							"host": [
+								"{{Baseurl}}"
+							],
+							"path": [
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Post",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDcyNDc1NDUyOTdhNTY1NGYwZWM4NGYiLCJlbWFpbCI6Im9paGltZWtwZW5AZ21haWwuY29tIiwiaWF0IjoxNjg1MjExMDM3LCJleHAiOjE2OTI5ODcwMzd9.5NIF4m3pbnLyuegpYlR1hjFCFKXxUHPcY1YSYTv6tKA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Baseurl}}/post?skip=0&take=10",
+							"host": [
+								"{{Baseurl}}"
+							],
+							"path": [
+								"post"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0",
+									"description": "(Required)<number>this is like a page number starting from zero"
+								},
+								{
+									"key": "take",
+									"value": "10",
+									"description": "(Required)<number>this is the amount of data to collect per page"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Likes and Comment",
+			"item": [
+				{
+					"name": "addComment",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDcxMjM4NGU0ZDE3NzI2ODNiMGMzODMiLCJlbWFpbCI6Im9paGltZWtwZW5AZ21haWwuY29tIiwiaWF0IjoxNjg1MTQyNDk5LCJleHAiOjE2OTI5MTg0OTl9.L7iW-Upu-cMvDbdRjbBgwEmkY_9v8T_lJIcOjihr604",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "content",
+									"value": "this is awesome, i learnt a lot",
+									"description": "(Required)<string>",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Baseurl}}/post/:postID/comment",
+							"host": [
+								"{{Baseurl}}"
+							],
+							"path": [
+								"post",
+								":postID",
+								"comment"
+							],
+							"variable": [
+								{
+									"key": "postID",
+									"value": "64746965d44c845ba9643742",
+									"description": "(Required)<string>this is the post's id you wish to make a comment"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "like/unlike post",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDcxMjM4NGU0ZDE3NzI2ODNiMGMzODMiLCJlbWFpbCI6Im9paGltZWtwZW5AZ21haWwuY29tIiwiaWF0IjoxNjg1MTQyNDk5LCJleHAiOjE2OTI5MTg0OTl9.L7iW-Upu-cMvDbdRjbBgwEmkY_9v8T_lJIcOjihr604",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Baseurl}}/post/:postID/act",
+							"host": [
+								"{{Baseurl}}"
+							],
+							"path": [
+								"post",
+								":postID",
+								"act"
+							],
+							"variable": [
+								{
+									"key": "postID",
+									"value": "64746965d44c845ba9643742",
+									"description": "(Required)<string>this is the post's id you wish to like or unlike"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Follow and Unfollow",
+			"item": [
+				{
+					"name": "follow/unfollow User",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDcxMjM4NGU0ZDE3NzI2ODNiMGMzODMiLCJlbWFpbCI6Im9paGltZWtwZW5AZ21haWwuY29tIiwiaWF0IjoxNjg1MTQyNDk5LCJleHAiOjE2OTI5MTg0OTl9.L7iW-Upu-cMvDbdRjbBgwEmkY_9v8T_lJIcOjihr604",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "Animals will take over",
+									"description": "(Required)<string>",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "in this article about animal, lions are not friends",
+									"description": "(Required)<string>",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Baseurl}}/user/:userID/act",
+							"host": [
+								"{{Baseurl}}"
+							],
+							"path": [
+								"user",
+								":userID",
+								"act"
+							],
+							"variable": [
+								{
+									"key": "userID",
+									"value": "6474685cfbcd812fc5e8ce57",
+									"description": "(Required)<string> this is the user's id you wish to follow"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Search Functionality",
+			"item": [
+				{
+					"name": "Search for Post",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDcxMjM4NGU0ZDE3NzI2ODNiMGMzODMiLCJlbWFpbCI6Im9paGltZWtwZW5AZ21haWwuY29tIiwiaWF0IjoxNjg1MTQyNDk5LCJleHAiOjE2OTI5MTg0OTl9.L7iW-Upu-cMvDbdRjbBgwEmkY_9v8T_lJIcOjihr604",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Baseurl}}/post/search?keywords=Blockchain",
+							"host": [
+								"{{Baseurl}}"
+							],
+							"path": [
+								"post",
+								"search"
+							],
+							"query": [
+								{
+									"key": "keywords",
+									"value": "Blockchain",
+									"description": "(Required)<string>"
+								},
+								{
+									"key": "skip",
+									"value": "0",
+									"description": "(Optional)<number>",
+									"disabled": true
+								},
+								{
+									"key": "take",
+									"value": "10",
+									"description": "(Optional)<number>",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDc0NjlhMWQ0NGM4NDViYTk2NDM3NDUiLCJlbWFpbCI6Im9paGltZWtwZW4rQGdtYWlsLmNvbSIsImlhdCI6MTY4NTM1MDgyNiwiZXhwIjoxNjkzMTI2ODI2fQ.e_M8I65Y1O3LLdNWMOWwGt2HoGOA_Yo2EiBZhUO_F5A",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "token",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "Baseurl",
+			"value": "http://localhost:3001/api/v1"
+		}
+	]
+}
