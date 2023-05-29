@@ -61,10 +61,3 @@ $ docker run -p 3001:3001 dredgreat/itana
 $ docker push dredgreat/itana
 ```
 
-
-
-
-
-kubectl create -f deployment.yaml 
-kubectl get pods
-kubectl logs 
