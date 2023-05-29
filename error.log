@@ -1,0 +1,8 @@
+{"level":"error","message":"🤢 Database Error: database names cannot contain the character '$'","timestamp":"17/05/2023 23:07:25"}
+{"level":"error","message":"🤢 Database Error: database names cannot contain the character '$'","timestamp":"17/05/2023 23:07:27"}
+{"level":"error","message":"🤢 Database Error: database names cannot contain the character '$'","timestamp":"17/05/2023 23:07:29"}
+{"level":"error","message":"🤢 Database Error: database names cannot contain the character '$'","timestamp":"17/05/2023 23:07:30"}
+{"level":"error","message":"🤢 Database Error: connection timed out","timestamp":"26/05/2023 22:11:54"}
+{"level":"error","message":"🤢 Database Error: bad auth : Authentication failed.","timestamp":"26/05/2023 22:12:22"}
+{"level":"error","message":"🤢 Database Error: Server selection timed out after 30000 ms","timestamp":"26/05/2023 22:13:32"}
+{"level":"error","message":"🤢 Database Error: connect ETIMEDOUT 15.188.4.119:27017","timestamp":"27/05/2023 04:32:29"}
