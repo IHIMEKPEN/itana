@@ -7,7 +7,7 @@ import { AppError, AuthError, asyncWrapper } from '../utils';
 import { Injectable, NestMiddleware } from '@nestjs/common';
 
 export interface IUserRequest extends Request {
-  user?: IUser;
+  user?: Partial<IUser>;
   foundUser?: IUser;
 
 }

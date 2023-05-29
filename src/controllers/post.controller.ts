@@ -1,12 +1,13 @@
-import { Request, Response, Body, Controller, Get, Post, Patch, Param, Query, CacheInterceptor, UseInterceptors } from '@nestjs/common';
+import { Request, Response, Body, Controller, Get, Post, Patch, Param, Query,  UseInterceptors } from '@nestjs/common';
 import { PostService } from '../services';
-import { httpResponse } from 'src/utils';
+import { httpResponse } from '../utils';
 import _ from 'underscore';
 import { Request as IRequest, Response as IResponse, NextFunction, query } from 'express';
-import { IUserRequest } from 'src/middlewares';
-
+import { IUserRequest } from '../middlewares';
+import { CacheInterceptor } from '@nestjs/cache-manager';
 
 @Controller()
+// @UseInterceptors(CacheInterceptor)
 export class PostController {
   constructor(private readonly postService: PostService) { }
 
@@ -25,7 +26,7 @@ export class PostController {
   }
 
   @Patch('/api/v1/post/:postID/comment')
-  async addComment(@Request() req: IUserRequest, @Response() res: IResponse,@Param() params: { postID: string }): Promise<any> {
+  async addComment(@Request() req: Partial<IUserRequest>, @Response() res: IResponse,@Param() params: { postID: string }): Promise<any> {
     let user = req.user
     let data = {
     ...req.body,
@@ -38,11 +39,11 @@ export class PostController {
 
   }
   @Patch('/api/v1/post/:postID/act')
-  async postAct(@Request() req: IUserRequest, @Response() res: IResponse,@Param() params: { postID: string }): Promise<any> {
+  async postAct(@Request() req: Partial<IUserRequest>, @Response() res: Partial<IResponse>,@Param() params: { postID: string }): Promise<any> {
     let user = req.user
     let data = {
     ...req.body,
-    postId: params.postID
+    postID: params.postID
     }
     
     let post = await this.postService.postAct(data,user);
@@ -51,9 +52,8 @@ export class PostController {
 
   }
   
-  @UseInterceptors(CacheInterceptor) // Automatically cache the response for this endpoint
   @Get('/api/v1/post/search')
-  async postSearch(@Request() req: IUserRequest, @Response() res: IResponse,@Query() query: { keywords: string }): Promise<any> {
+  async postSearch(@Request() req: Partial<IUserRequest>, @Response() res: IResponse,@Query() query: { keywords: string }): Promise<any> {
     let user = req.user
     let {skip=0,take=10}=req.query
     let post = await this.postService.postSearch(query.keywords,{skip,take});

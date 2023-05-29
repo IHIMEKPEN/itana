@@ -16,7 +16,7 @@ import { IUser } from 'src/interfaces';
 export class AuthService {
   private readonly userService = new UserService();
 
-  public async register(userData:  Partial<IUser>): Promise<IUser> {
+  public async register(userData:  Partial<IUser>): Promise<Partial<IUser>> {
     let {email,password,username}=userData
     if (!password) throw new ValidationError('password field is required', 'password', '', 'password-required');
     if (!email) throw new ValidationError('email address field is required', 'email', '', 'email-required');

@@ -6,3 +6,4 @@
 {"level":"error","message":"🤢 Database Error: bad auth : Authentication failed.","timestamp":"26/05/2023 22:12:22"}
 {"level":"error","message":"🤢 Database Error: Server selection timed out after 30000 ms","timestamp":"26/05/2023 22:13:32"}
 {"level":"error","message":"🤢 Database Error: connect ETIMEDOUT 15.188.4.119:27017","timestamp":"27/05/2023 04:32:29"}
+{"level":"error","message":"🤢 Database Error: connect ETIMEDOUT 15.188.4.119:27017","timestamp":"29/05/2023 12:34:18"}

@@ -1,7 +1,7 @@
 import {Request,Response, Body, Controller, Get, Post, Inject } from '@nestjs/common';
 import { AuthService } from '../services/auth.service';
-import { IUser } from 'src/interfaces';
-import { httpResponse } from 'src/utils';
+import { IUser } from '../interfaces';
+import { httpResponse } from '../utils';
 import _ from 'underscore';
 import { Request as IRequest, Response as IResponse, NextFunction } from 'express';
 
@@ -12,7 +12,7 @@ export class AuthController {
   @Post('/api/v1/register')
   async register(@Body() userData: Partial<IUser>): Promise<any> {
     let user :Partial<IUser>= await this.authService.register(userData);
-    user = _.pick(user,  'email', 'isVerified');
+    user = _.pick(user,  'email');
     return httpResponse('user registration successful', { user})
     // res.status(200)
     //   .json(httpResponse('user registration successful', { user: filtered }));

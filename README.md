@@ -44,21 +44,21 @@ $ npm run test
 
   Itana is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
 
- ## Deployment Steps
+ ## Containerize App
 
 ```bash
 # build image/put app in  container
-$ docker build -t dredgreat/itana .
+docker build -t dredgreat/itana .
 ```
 
 ```bash
 # run container
-$ docker run -p 3001:3001 dredgreat/itana
+docker run -p 3001:3001 dredgreat/itana
 ```
 
 ```bash
 #push to docker hub
-$ docker push dredgreat/itana
+docker push dredgreat/itana
 ```
 ## Documentation
 
