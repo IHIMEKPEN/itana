@@ -63,7 +63,7 @@ export class PostController {
   }
 
   @Get('/api/v1/post')
-  async getPosts(@Request() req: IUserRequest, @Response() res: IResponse): Promise<void> {
+  async getPosts(@Request() req: Partial<IUserRequest>, @Response() res: Partial<IResponse>): Promise<void> {
     let user = req?.user
     let {skip=0,take=10}=req.query
     let posts = await this.postService.getUserPosts(user,{skip,take});

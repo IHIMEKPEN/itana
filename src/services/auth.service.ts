@@ -31,7 +31,7 @@ export class AuthService {
     
     return user;
   }
-  async login({ email, password }: Partial<IUser>): Promise<{token:string,user:IUser}> {
+  async login({ email, password }: Partial<IUser>): Promise<{token:string,user:Partial<IUser>}> {
     if (!password) throw new ValidationError('password field is required', 'password', '', 'password-required');
     if (!email) throw new ValidationError('email address field is required', 'email', '', 'email-required');
    
@@ -49,6 +49,7 @@ export class AuthService {
     }
     // console.log(user)
     const token = signToken(user);
+    user.password=undefined
     return {token,user};
   }
 }

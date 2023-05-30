@@ -21,7 +21,7 @@ export class AuthController {
   @Post('/api/v1/login')
  async login(@Body() userData: Partial<IUser>): Promise<any> {
     let {token,user}= await this.authService.login(userData);
-    return httpResponse('loggin successful', { token,user})
+    return httpResponse('login successful', { token,user})
   }
   
   @Get()

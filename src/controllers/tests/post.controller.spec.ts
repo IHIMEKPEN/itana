@@ -60,4 +60,57 @@ describe('PostController', () => {
       });
     });
   });
+  
+  describe('getPosts', () => {
+    it('should get all posts and return a response', async () => {
+      // Mock the dependencies and input data
+      const req:Partial<IUserRequest> = {
+        user: { 
+          id: '6474685cfbcd812fc5e8ce58',
+          email: "testEmail@gmail.com",
+          username: "testUsername",
+          followers: [],
+          follows: []
+         },
+         query : {
+          skip:'0',
+          take:'10'
+        }
+      };
+      const res:Partial<IResponse> = {
+        status: jest.fn().mockReturnThis(),
+        json: jest.fn(),
+      };
+      const userPosts = [
+        { id: 1, title: 'Post 1' },
+        { id: 2, title: 'Post 2' },
+      ];
+      const expectedResponse = {
+       data:{ NoPosts: userPosts.length,
+        posts: userPosts,}
+      };
+
+     // Mock the postService.postAct method
+      const mockpostAct = jest.spyOn(postService, 'getUserPosts');
+      mockpostAct.mockResolvedValueOnce(userPosts);
+
+      // Call the postAct method
+      await postController.getPosts(req, res);
+
+      // Expectations
+      expect(mockpostAct).toHaveBeenCalledWith(req.user,{    
+        skip:'0',
+        take:'10'
+      });
+      expect(res.status).toHaveBeenCalledWith(200);
+      expect(res.json).toHaveBeenCalledWith(
+        expect.objectContaining({
+        message: 'posts fetched',
+        ...expectedResponse,
+      }),);
+    });
+  });
+
+
+
 });
